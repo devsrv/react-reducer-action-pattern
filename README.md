@@ -1,68 +1,40 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React reducer-action pattern
 
-## Available Scripts
+cleaner state management for react without pulling any dependency
 
-In the project directory, you can run:
+## 🌈 what is this?
 
-### `yarn start`
+> this is not a package, it is a micro implementation of the approach/ idea. you can think it of a clean alternative for individual component's state management without needing to install any package.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Feel free to download the app & check the source to get the idea, in the project directory, run:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### 🌬 `yarn start`
 
-### `yarn test`
+##  🤖  how it works !
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+this approach uses react's useReducer hook and a custom HOC thats it.
+the HOC wraps your component just like Redux does and you get `state` and `action` as props for that component
 
-### `yarn build`
+## ⌨️ how to use ?
+- ✔ create `actionType` constants - 
+- ✔ create `reducer`
+- ✔ create `action.js` where you keep all the functions (_as object_) which are capable of dispatching to reducers (any extra works before dispatching also can be done here, __but dont forget to use `await` statements properpy__ )
+- ✔ export your component using the `withAction` HOC
+- ✔ now you can get the state by using `props.state`
+- ✔ apply any action by using `props.action.ACTION_PROPERTY_NAME`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📑 IMPORTANT NOTES
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+##### 🚫 this approach is for state management of individual component not for entire app so don't think it as a replacement of Redux
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+##### 🚫 use this pattern when your component is using too many `useState`
+ 
+##### 🚫 make seperate reducer & action for individual components and don't use any other component's reducer in a different component's export thinking that you'll get its state outside of the component ( this approach uses `useReducer` & that's how it works )
 
-### `yarn eject`
+## 🎯 Tips
+- only go for this approach when you think your component is using too many `useState`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- you can use `useContext` and apply the same idea of this approach __to achieve the state management for your entire app__ without needing to install any other package
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
